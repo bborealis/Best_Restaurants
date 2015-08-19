@@ -66,6 +66,22 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");
         }
+
+        static function getAll()
+        {
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
+            $restaurants = array();
+            foreach($returned_restaurants as $restaurant) {
+                $place_name = $restaurant["place_name"];
+                $id = $restaurant["id"];
+                $address = $restaurant["address"];
+                $phone = $restaurant["phone"];
+                $cuisine_id = $restaurant["cuisine_id"];
+                $new_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
     }
 
 

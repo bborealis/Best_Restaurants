@@ -133,7 +133,6 @@
             $test_restaurant2->save();
 
             $result = $test_cuisine->getRestaurants();
-            var_dump($result);
 
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
 
