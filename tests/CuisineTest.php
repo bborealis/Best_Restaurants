@@ -13,9 +13,10 @@
 
     class CuisineTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown() {
-        //     Cuisine::deleteAll();
-        // }
+        protected function tearDown() {
+            Cuisine::deleteAll();
+        }
+        
         function test_getName()
         {
             $name = "Chinese";
@@ -24,6 +25,17 @@
             $result = $test_cuisine->getName();
 
             $this->assertEquals($name, $result);
+        }
+
+        function test_save()
+        {
+            $name = "Chinese";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+
+            $result = Cuisine::getAll();
+
+            $this->assertEquals($test_cuisine,  $result[0]);
         }
 
     }
