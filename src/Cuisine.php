@@ -30,6 +30,22 @@
             return $this->id;
         }
 
+        function getRestaurants()
+        {
+            $restaurants = array();
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()}; ");
+            foreach($returned_restaurants as $restaurant) {
+                $place_name = $restaurant["place_name"];
+                $id = $restaurant["id"];
+                $address = $restaurant["address"];
+                $phone = $restaurant["phone"];
+                $cuisine_id = $restaurant["cuisine_id"];
+                $new_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
+
         //this function calls the function setId
         function save()
         {
