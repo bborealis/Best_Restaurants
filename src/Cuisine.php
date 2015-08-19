@@ -10,10 +10,10 @@
             $this->id= $id;
         }
 
-        // function setName($new_name)
-        // {
-        //     $this->name = (string) $new_name;
-        // }
+        function setName($new_name)
+        {
+            $this->name = (string) $new_name;
+        }
 
         function getName()
         {
@@ -30,11 +30,24 @@
             return $this->id;
         }
 
+        //this function calls the function setId
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO cuisines (name) VALUES ('{$this->getName()}');");
             $result_id = $GLOBALS['DB']->lastInsertId();
             $this->setId($result_id);
+        }
+
+        //this function calls the function setName
+        function update($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE categories SET name = '{new_name}' WHERE id = {$this->getId()};");
+            $this->setName($new_name);
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
         }
 
         static function getAll()
@@ -54,6 +67,19 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec('DELETE FROM cuisines;');
+        }
+
+        static function find($search_id)
+        {
+            $found_cuisine = null;
+            $cuisines = Cuisine::getAll();
+            foreach($cuisines as $cuisine) {
+                $cuisine_id = $cuisine->getId();
+                if ($cuisine_id == $search_id) {
+                    $found_cuisine = $cuisine;
+                }
+            }
+            return $found_cuisine;
         }
     }
 
