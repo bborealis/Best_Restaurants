@@ -7,7 +7,7 @@
         function __construct($name, $id = null)
         {
             $this->name = $name;
-            $this->id= $id;
+            $this->id = $id;
         }
 
         function setName($new_name)
@@ -33,7 +33,7 @@
         function getRestaurants()
         {
             $restaurants = array();
-            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()}; ");
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()};");
             foreach($returned_restaurants as $restaurant) {
                 $place_name = $restaurant["place_name"];
                 $id = $restaurant["id"];

@@ -5,6 +5,7 @@
     */
 
     require_once "src/Cuisine.php";
+    require_once "src/Restaurant.php";
 
     $server = 'mysql:host=localhost;dbname=best_restaurants_test';
     $username = 'root';
@@ -15,6 +16,7 @@
     {
         protected function tearDown() {
             Cuisine::deleteAll();
+            Restaurant::deleteAll();
         }
 
         function test_getName()
@@ -131,6 +133,7 @@
             $test_restaurant2->save();
 
             $result = $test_cuisine->getRestaurants();
+            var_dump($result);
 
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
 
