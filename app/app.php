@@ -61,11 +61,12 @@
         return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
     });
 
-    $app->post("/", function() use ($app) {
+    $app->post("/deleteAll", function() use ($app) {
         Cuisine::deleteAll();
         return $app['twig']->render('index.html.twig', array ('cuisines' => Cuisine::getAll()));
     });
 
+    //$cuisine->getRestaurants returns only the restaurants belonging to that cuisine
     $app->post("/restaurants", function() use ($app) {
         $place_name = $_POST['place_name'];
         $address = $_POST['address'];
@@ -74,7 +75,7 @@
         $restaurant = new Restaurant($place_name, $id = null, $address, $phone, $cuisine_id);
         $restaurant->save();
         $cuisine = Cuisine::find($cuisine_id);
-        return $app['twig']->render('restaurants.html.twig', array('cuisine' => $cuisine, 'restaurants' => Restaurant::getAll()));
+        return $app['twig']->render('restaurants.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
     });
 
 
