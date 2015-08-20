@@ -54,10 +54,6 @@
         return $app['twig']->render('restaurants.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
     });
 
-
-
     return $app;
-
-
 
 ?>

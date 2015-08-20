@@ -5,8 +5,25 @@
     </head>
     <body>
         <div class='container'>
-            {{ cuisine.getName }}
+            <h1>{{ cuisine.getName }}</h1>
             <hr>
+
+            <p>Enter a restaurant:</p>
+
+            <form action='/restaurants' method='post'>
+                <div class ='form-group'>
+                    <label for='place_name'></label>
+                    <input id='place_name' class='form-control' placeholder='Restaurant Name' name='place_name' type='text'>
+                    <br>
+                    <label for='address'></label>
+                    <input id='address' class='form-control' placeholder='Restaurant Address' name='address' type='text'>
+                    <br>
+                    <label for='phone'></label>
+                    <input id='phone' class='form-control' placeholder='Restaurant Phone Number' name='phone' type='text'>
+                    <br>
+                    <button type='submit' class='btn btn-danger'>Add Restaurant</button>
+                </div>
+            </form>
 
             {% if restaurants is not empty %}
                 <p>Here are the restaurants:</p>
