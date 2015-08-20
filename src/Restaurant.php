@@ -62,6 +62,14 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($new_place_name, $new_address, $new_phone)
+        {
+            $GLOBALS['DB']->exec("UPDATE restaurants SET place_name = '{new_place_name}', address = '{new_address}', phone = '{new_phone}' WHERE id = {$this->getId()};");
+            $this->setPlaceName($new_place_name);
+            $this->setAddress($new_address);
+            $this->setPhone($new_phone);
+        }
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");

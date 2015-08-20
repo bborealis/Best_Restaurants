@@ -103,6 +103,55 @@
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 
+        function test_deleteAll()
+        {
+            $name = "Chinese";
+            $id = null;
+            $test_cuisine = new Cuisine($name, $id);
+            $test_cuisine->save();
+
+            $place_name = "Happy House";
+            $address = "4234 N Interstate Ave, Portland OR 97217";
+            $phone = "503-287-9740";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
+            $test_restaurant->save();
+
+            $place_name2 = "Golden Dragon";
+            $address2 = "324 SW 3rd Ave, Portland, OR 97204";
+            $phone2 = "503-274-1900";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant2 = new Restaurant($place_name2, $id, $address2, $phone2, $cuisine_id);
+            $test_restaurant2->save();
+
+            Restaurant::deleteAll();
+
+            $result = Restaurant::getAll();
+            $this->assertEquals([], $result);
+        }
+
+        function test_update()
+        {
+            $name = "Chinese";
+            $id = null;
+            $test_cuisine = new Cuisine($name, $id);
+            $test_cuisine->save();
+
+            $place_name = "Happy House";
+            $address = "4234 N Interstate Ave, Portland OR 97217";
+            $phone = "503-287-9740";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
+            $test_restaurant->save();
+
+            $new_place_name = "Very Happy House";
+            $new_address = "5000 N Interstate Ave, Portland OR 97217";
+            $new_phone = "503-287-9000";
+
+            $test_restaurant->update($new_place_name, $new_address, $new_phone);
+
+            $this->assertEquals("Very Happy House", "5000 N Interstate Ave, Portland OR 97217", "503-287-9000", $test_restaurant->getPlaceName(), $test_restaurant->getAddress(), $test_restaurant->getPhone());
+        }
 
     }
 
