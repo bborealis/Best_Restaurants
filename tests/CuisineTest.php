@@ -120,16 +120,16 @@
             $test_cuisine = new Cuisine($name, $id);
             $test_cuisine->save();
 
-            $test_address = "4234 N Interstate Ave, Portland OR 97217";
-            $test_phone = "503-287-9740";
-            $test_cuisine_id = $test_cuisine->getId();
+            $address = "4234 N Interstate Ave, Portland OR 97217";
+            $phone = "503-287-9740";
+            $cuisine_id = $test_cuisine->getId();
 
             $place_name = "Happy House";
-            $test_restaurant = new Restaurant($place_name, $id, $test_address, $test_phone, $test_cuisine_id);
+            $test_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
             $test_restaurant->save();
 
             $place_name2 = "Golden Dragon";
-            $test_restaurant2 = new Restaurant($place_name2, $id, $test_address, $test_phone, $test_cuisine_id);
+            $test_restaurant2 = new Restaurant($place_name2, $id, $address, $phone, $cuisine_id);
             $test_restaurant2->save();
 
             $result = $test_cuisine->getRestaurants();

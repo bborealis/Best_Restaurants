@@ -70,6 +70,11 @@
             $this->setPhone($new_phone);
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getId()};");
+        }
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");

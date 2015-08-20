@@ -150,7 +150,29 @@
 
             $test_restaurant->update($new_place_name, $new_address, $new_phone);
 
-            $this->assertEquals("Very Happy House", "5000 N Interstate Ave, Portland OR 97217", "503-287-9000", $test_restaurant->getPlaceName(), $test_restaurant->getAddress(), $test_restaurant->getPhone());
+            $this->assertEquals("Very Happy House", $test_restaurant->getPlaceName());
+            $this->assertEquals("5000 N Interstate Ave, Portland OR 97217", $test_restaurant->getAddress());
+            $this->assertEquals("503-287-9000", $test_restaurant->getPhone());
+        }
+
+        function test_delete()
+        {
+            $address = "4234 N Interstate Ave, Portland OR 97217";
+            $phone = "503-287-9740";
+            $cuisine_id = 2;
+
+            $place_name = "Happy House";
+            $id = null;
+            $test_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
+            $test_restaurant->save();
+
+            $place_name2 = "Golden Dragon";
+            $test_restaurant2 = new Restaurant($place_name2, $id, $address, $phone, $cuisine_id);
+            $test_restaurant2->save();
+
+            $test_restaurant->delete();
+
+            $this->assertEquals([$test_restaurant2], Restaurant::getAll());
         }
 
     }
