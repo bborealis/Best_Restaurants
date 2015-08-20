@@ -1,8 +1,39 @@
 <html>
     <head>
         <title>Restaurants</title>
+        <link rel="stylesheet"      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     </head>
     <body>
+        <div class='container'>
+            <h1>Restaurant Type</h1>
 
+            <p>Enter a restaurant type:</p>
+
+            <form action='/cuisines' method='post'>
+                <div class ='form-group'>
+                    <label for='name'></label>
+                    <input id='name' class='form-control' placeholder='Restaurant Type' name='name' type='text'>
+                    <br>
+                    <button type='submit' class='btn btn-danger'>Add Restaurant Type</button>
+                </div>
+            </form>
+
+            {% if cuisines is not empty %}
+                <p>Your restaurant types:</p>
+                <ul>
+                    {% for cuisine in cuisines %}
+                        <li><a href="/cuisines/{{ cuisine.getId }}">{{ category.getName }}</a></li>
+                    {% endfor %}
+                </ul>
+            <br>
+
+            <form action='/delete' method='post'>
+                <button type='submit' class='btn btn-danger'>Delete All Restaurant Types</button>
+            </form>
+
+            {% else %}
+                <p>There are no restaurant types yet!</p>
+            {% endif %}
+        </div>
     </body>
 </html>
