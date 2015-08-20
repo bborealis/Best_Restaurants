@@ -7,7 +7,7 @@
         private $phone;
         private $cuisine_id;
 
-        function __construct($place_name, $id =null, $address, $phone, $cuisine_id)
+        function __construct($place_name, $id = null, $address, $phone, $cuisine_id)
         {
             $this->place_name = $place_name;
             $this->id = $id;
@@ -95,6 +95,21 @@
             }
             return $restaurants;
         }
+
+        static function find($search_id)
+        {
+            $found_restaurant = null;
+            $restaurants = Restaurant::getAll();
+            foreach($restaurants as $restaurant) {
+                $id = $restaurant->getId();
+                if ($id == $search_id) {
+                    $found_restaurant = $restaurant;
+                }
+            }
+            return $found_restaurant;
+        }
+
+
     }
 
 

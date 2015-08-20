@@ -35,11 +35,11 @@
             $restaurants = array();
             $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()};");
             foreach($returned_restaurants as $restaurant) {
-                $place_name = $restaurant["place_name"];
-                $id = $restaurant["id"];
-                $address = $restaurant["address"];
-                $phone = $restaurant["phone"];
-                $cuisine_id = $restaurant["cuisine_id"];
+                $place_name = $restaurant['place_name'];
+                $id = $restaurant['id'];
+                $address = $restaurant['address'];
+                $phone = $restaurant['phone'];
+                $cuisine_id = $restaurant['cuisine_id'];
                 $new_restaurant = new Restaurant($place_name, $id, $address, $phone, $cuisine_id);
                 array_push($restaurants, $new_restaurant);
             }
@@ -57,13 +57,14 @@
         //this function calls the function setName
         function update($new_name)
         {
-            $GLOBALS['DB']->exec("UPDATE categories SET name = '{new_name}' WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("UPDATE cuisines SET name = '{$new_name}' WHERE id = {$this->getId()};");
             $this->setName($new_name);
         }
 
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getId()};");
         }
 
         static function getAll()

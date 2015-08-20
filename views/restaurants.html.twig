@@ -11,6 +11,7 @@
             <p>Enter a restaurant:</p>
 
             <form action='/restaurants' method='post'>
+                <input id='cuisine_id' class='form-control' name="cuisine_id" type="hidden" value="{{ cuisine.getId()}}">
                 <div class ='form-group'>
                     <label for='place_name'></label>
                     <input id='place_name' class='form-control' placeholder='Restaurant Name' name='place_name' type='text'>
@@ -22,6 +23,7 @@
                     <input id='phone' class='form-control' placeholder='Restaurant Phone Number' name='phone' type='text'>
                     <br>
                     <button type='submit' class='btn btn-danger'>Add Restaurant</button>
+                    <a class="btn btn-danger" href="/" role="button">Home</a>
                 </div>
             </form>
 

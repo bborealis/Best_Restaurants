@@ -22,7 +22,11 @@
                 <p>Your restaurant types:</p>
                 <ul>
                     {% for cuisine in cuisines %}
-                        <li><a href="/restaurants/{{ cuisine.getId }}">{{ cuisine.getName }}</a></li>
+                    <form action='/cuisines/{{ cuisine.getId }}' method='post'>
+                        <input name='_method' type='hidden' value='delete'>
+                        <li><h4><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getName }}</a>
+                            <a class="btn btn-danger btn-xs" href="/cuisines/{{ cuisine.getId }}/edit" role="button">Edit</a>
+                            <button type="submit" class="btn btn-danger btn-xs">Delete</button>
                     {% endfor %}
                 </ul>
             <br>
