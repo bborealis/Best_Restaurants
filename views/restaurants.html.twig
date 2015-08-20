@@ -1,8 +1,30 @@
 <html>
     <head>
         <title>Restaurants</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     </head>
     <body>
+        <div class='container'>
+            {{ cuisine.getName }}
+            <hr>
+
+            {% if restaurants is not empty %}
+                <p>Here are the restaurants:</p>
+                <ul>
+                    {% for restaurant in restaurants %}
+                        <li>{{ restaurant.getPlaceName }}</li>
+                        <ul>
+                            <li>{{ restaurant.getAddress }}</li>
+                            <li>{{ restaurant.getPhone }}</li>
+                        </ul>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+
+
+        </div>
 
     </body>
 </html>
