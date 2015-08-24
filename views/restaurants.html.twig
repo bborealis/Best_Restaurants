@@ -31,8 +31,11 @@
                 <p>Here are the restaurants:</p>
                 <ul>
                     {% for restaurant in restaurants %}
+                    <form action='/restaurants/{{ restaurant.getId }}' method='post'>
+                        <input name='_method' type='hidden' value='delete'>
+
                         <li>{{ restaurant.getPlaceName }}</li>
-                        <ul>
+                        <a class="btn btn-success btn-xs" href="/restaurants/{{ restaurant.getId }}/edit" role= 'button'>Update</a>                        <ul>
                             <li>{{ restaurant.getAddress }}</li>
                             <li>{{ restaurant.getPhone }}</li>
                         </ul>
